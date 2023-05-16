@@ -2,32 +2,37 @@ package com.devsuperior.dslist.entities;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name="tb_game")
+@Entity //Deixa uma classe indentica a uma tabela no banco de dados.
+@Table(name="tb_game") //Atribui um nome para a tabela.
 public class Game {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Auto incrementa no banco de dados, para sempre adicionar um id.
     private Long id;
     private String title;
 
-    @Column(name = "game_year")
+    @Column(name = "game_year") //Altera o nome da tabela no banco de dados
     private Integer year;
     private String genre;
-    private String platform;
+    private String platforms;
+
+    private Double score;
     private String imgUrl;
+    @Column(columnDefinition = "TEXT") //Essa anotação permitir inserir mais de 255 caracteres no banco de dados.
     private String shortDescription;
+    @Column(columnDefinition = "TEXT")
     private String longDescription;
 
     public Game() {
     }
 
-    public Game(Long id, String title, Integer year, String genre, String platform, String imgUrl, String shortDescription, String longDescription) {
+    public Game(Long id, String title, Integer year, String genre, String platforms, Double score, String imgUrl, String shortDescription, String longDescription) {
         this.id = id;
         this.title = title;
         this.year = year;
         this.genre = genre;
-        this.platform = platform;
+        this.platforms = platforms;
+        this.score = score;
         this.imgUrl = imgUrl;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
@@ -65,12 +70,20 @@ public class Game {
         this.genre = genre;
     }
 
-    public String getPlatform() {
-        return platform;
+    public String getPlatforms() {
+        return platforms;
     }
 
-    public void setPlatform(String platform) {
-        this.platform = platform;
+    public void setPlatforms(String platforms) {
+        this.platforms = platforms;
+    }
+
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
     }
 
     public String getImgUrl() {
@@ -106,8 +119,9 @@ public class Game {
         if (getTitle() != null ? !getTitle().equals(game.getTitle()) : game.getTitle() != null) return false;
         if (getYear() != null ? !getYear().equals(game.getYear()) : game.getYear() != null) return false;
         if (getGenre() != null ? !getGenre().equals(game.getGenre()) : game.getGenre() != null) return false;
-        if (getPlatform() != null ? !getPlatform().equals(game.getPlatform()) : game.getPlatform() != null)
+        if (getPlatforms() != null ? !getPlatforms().equals(game.getPlatforms()) : game.getPlatforms() != null)
             return false;
+        if (getScore() != null ? !getScore().equals(getScore()) : game.getScore() != null) return false;
         if (getImgUrl() != null ? !getImgUrl().equals(game.getImgUrl()) : game.getImgUrl() != null) return false;
         if (getShortDescription() != null ? !getShortDescription().equals(game.getShortDescription()) : game.getShortDescription() != null)
             return false;
@@ -120,7 +134,8 @@ public class Game {
         result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
         result = 31 * result + (getYear() != null ? getYear().hashCode() : 0);
         result = 31 * result + (getGenre() != null ? getGenre().hashCode() : 0);
-        result = 31 * result + (getPlatform() != null ? getPlatform().hashCode() : 0);
+        result = 31 * result + (getPlatforms() != null ? getPlatforms().hashCode() : 0);
+        result = 31 * result + (getScore() != null ? getScore().hashCode() : 0);
         result = 31 * result + (getImgUrl() != null ? getImgUrl().hashCode() : 0);
         result = 31 * result + (getShortDescription() != null ? getShortDescription().hashCode() : 0);
         result = 31 * result + (getLongDescription() != null ? getLongDescription().hashCode() : 0);
