@@ -1,8 +1,13 @@
 package com.devsuperior.dslist.entities;
 
+import jakarta.persistence.*;
 
+@Entity //Deixa uma classe indentica a uma tabela no banco de dados.
+@Table(name = "tb_game_list") //Atribui um nome para a tabela.
 public class GameList {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Auto incrementa no banco de dados, para sempre adicionar um id.
     private Long id;
     private String name;
 

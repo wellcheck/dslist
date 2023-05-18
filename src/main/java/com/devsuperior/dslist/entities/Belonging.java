@@ -21,4 +21,33 @@ public class Belonging {
         this.id.setGameList(list);
         this.position = position;
     }
+
+    public BelongingPK getId() {
+        return id;
+    }
+
+    public void setId(BelongingPK id) {
+        this.id = id;
+    }
+
+    public Integer getPosition() {
+        return position;
+    }
+
+    public void setPosition(Integer position) {
+        this.position = position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Belonging belonging)) return false;
+
+        return getId() != null ? getId().equals(belonging.getId()) : belonging.getId() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return getId() != null ? getId().hashCode() : 0;
+    }
 }
