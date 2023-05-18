@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/list")
+@RequestMapping(value = "/lists")
 public class GameListController {
 
     @Autowired
     private GameListService gameListService;
+
+    @Autowired
+    private GameService gameService;
 
 
     @GetMapping()
@@ -26,4 +29,11 @@ public class GameListController {
         List<GameListDTO> resultado = gameListService.findAll();
         return resultado;
     }
+    @GetMapping(value = "/{listId}/games")
+    public List<GameMinDTO> findByList(@PathVariable Long listId){ //A Anotação @PathVariable extrai a informação da URL digitada pelo usuario!
+        List<GameMinDTO> resultado = gameService.findByList(listId);
+        return resultado;
+    }
+
+
 }

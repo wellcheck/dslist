@@ -20,7 +20,7 @@ public class GameController {
     private GameService gameService;
 
     @GetMapping(value = "/{id}")
-    public GameDTO findById(@PathVariable Long id){
+    public GameDTO findById(@PathVariable Long id){ //A Anotação @PathVariable extrai a informação da URL digitada pelo usuario!
         GameDTO resultado = gameService.findById(id);
         return resultado;
     }
